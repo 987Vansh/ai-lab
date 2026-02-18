@@ -42,3 +42,37 @@ floor_percentage = (floor_counts / len(df)) * 100
 floor_percentage_df = floor_percentage.reset_index()
 floor_percentage_df.columns = ['Floors', 'Percentage']
 
+# =========================
+# DECISION TREE MODEL
+# =========================
+
+# Remove missing values
+df = df.dropna()
+
+# Convert categorical columns (like city) into numbers
+df = pd.get_dummies(df, drop_first=True)
+
+# Target variable (what we want to predict)
+y = df['price']
+
+# Features (inputs)
+X = df.drop('price', axis=1)
+
+# Split data into training and testing
+from sklearn.model_selection import train_test_split
+X_train, X_test, y_train, y_test = train_test_split(
+    X, y, test_size=0.2, random_state=42
+)
+
+# Train Decision Tree
+from sklearn.tree import DecisionTreeRegressor
+model = DecisionTreeRegressor(max_depth=5, random_state=42)
+model.fit(X_train, y_train)
+
+# Make predictions
+y_pred = model.predict(X_test)
+
+# Evaluate model
+from sklearn.metrics import mean_absolute_error, r2_score
+print("MAE:", mean_absolute_error(y_test, y_pred))
+print("R2 Score:", r2_score(y_test, y_pred))
