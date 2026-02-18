@@ -30,7 +30,7 @@ f"The average price is: {average_price:.2f}"
 
 max_sale_percentage = df['price'].max()
 print(f"The maximum sales percentage is: {max_sale_percentage:.2f}%")
-
+print(f"The maximum sales percentage is: {max_sale_percentage:.2f}%")
 df.columns
 
 floor_per_yr_built = df['yr_built'].value_counts()
