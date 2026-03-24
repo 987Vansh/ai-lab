@@ -35,4 +35,4 @@ It is used to practice Git version control and experiment with ML models.
 The notebook trains the model and prints prediction accuracy.
 
 ## 👨‍💻 Author
-Your Name
+Vansh Arora 
